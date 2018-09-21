@@ -1,0 +1,111 @@
+.navbar {
+    border-style:none;
+};
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#lostBG {
+    background-image: url("../img/geometricBG.png");
+    background-size: cover;
+}
+
+#foundBG {
+    background-image: url("../img/pinkgeoBG.png");
+    background-size: cover;
+}
+
+#signInBG, #signUpBG {
+    background-image: url("../img/greengeoBG.png");
+    background-size: cover;
+}
+
+#browseBG{
+    background-image: url("../img/redgeoBG.jpg");
+    background-size: cover;
+}
+
+h2 {
+color: white;
+font-weight: 100;
+}
+
+#searchEntry {
+    max-width: 1140px;
+    margin: auto;
+}
+
+h7, h8 {
+    font-size: 1.25rem;
+    padding: 8px;
+    font-weight: 100;
+}
+
+#signInContainer, #signUpContainer {
+    color: white;
+}
+
+#homeBG {
+    background-image: url("../img/rainbowBG.jpg");
+    background-size: cover;
+    color: white;
+}
+
+label {
+    font-weight: 100;
+}
+
+.notSignedMessage, #welcomUser, #email-enter-error, #pass-enter-error {
+    font-weight: 250;
+    font-size: 20px; 
+    color: white;
+}
+
+#signInButton {
+    margin-top: 10px;
+}
+
+#enterFoundItems, #enterLostItems {
+    margin-top: 21px;
+}
+
+#homeLine1 {
+    max-width: 40%;
+    margin: auto;
+    background-color: rgba(153, 214, 255,0.6)
+}
+
+#homeLine2 {
+    max-width: 25%;
+    margin: auto;
+    background-color: rgba(153, 214, 255,0.6)
+}
+
+#lostCountDiv, #foundCountDiv {
+    max-width: 17%;
+    margin: auto;
+    background-color: rgba(153, 214, 255,0.6)
+}
+
+h10 {
+    font-weight: 100;
+    color: darkslateblue;
+}
+
+h9 {
+    color: mediumvioletred;
+    font-weight: bold;
+}

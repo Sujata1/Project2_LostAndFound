@@ -1,0 +1,142 @@
+<!-- ///////////////////////////////HEADER//////////////////////////////////////////////////// -->
+        <!-- ////////////////////////////////////////////////// -->
+
+        <!-- ////////////////////////////////////////////////// -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class='navbar-nav mr-auto nav nav-tabs collapse navbar-collapse card-header-tabs'>
+
+                    <li class='nav-item'>
+                        <a class='nav-link' href='index'>Home</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link active' href='SignIn'>Sign In</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='SignUp'>Sign Up</a>
+                    </li>
+                    <li class='nav-item'>
+                         <a  class='nav-link lostItem' href='lost'>Report Lost Item</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link foundItem' href='found'>Report Found Item</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='browse-items'>Browse Lost and Found Items</a>
+                    </li>
+                </ul>
+                <br>
+                <form class="form-inline">
+                    <input id="searchBarInput" class="form-control mr-sm-2" type="search" placeholder="Search by ID" aria-label="Search">
+                    <button id="searchBarBtn" class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+        </nav>
+<div class='card text-center' id='signInBG'>
+    {{!-- <div class='card-header'>
+        </div> --}}
+
+        <!-- /////////////////////////////////////Sign In///////////////// -->
+        <div class='container' id='signInContainer'>
+            <form class='px-4 py-3'>
+                <div class='form-group'>
+                    <label for='exampleDropdownFormEmail1'>Email address</label>
+                    <input type='email' class='form-control' id='exampleDropdownFormEmail1' placeholder='email@example.com'>
+                    <div id="email-enter-error"></div>
+                </div>
+                <div class='form-group'>
+                    <label for='exampleDropdownFormPassword1'>Password</label>
+                    <input type='password' class='form-control' id='exampleDropdownFormPassword1' placeholder='Password'>
+                     <div id="pass-enter-error"></div>
+                </div>
+                <div class='form-check'>
+                    <input type='checkbox' class='form-check-input' id='dropdownCheck'>
+                    <label class='form-check-label' for='dropdownCheck'>
+                        Remember me
+                    </label>
+                </div>
+                <button type='submit'  id='signInButton' class='btn btn-primary'>Sign in</button>
+                <div id="signin-enter-error"></div>
+            </form>
+            {{!-- <div class='dropdown-divider'></div> --}}
+            <a class='dropdown-item' href='SignUp'>New around here? Sign up</a>
+              
+            <!-- <a class='dropdown-item' href='#'>Forgot password?</a> -->
+        </div>
+
+    </div>
+
+    <!-- /////////////////////////////////Sign In/ Sign Up/////////////////////////////////////////////////////  -->
+
+   {{!-- ///////////////////////////////////////Modal////////////////////////////////////////// --}}
+  
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Developer Team Members - Coding Bootcamp-Project 2-University of Toronto</h5>
+                </h5>
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 ml-auto">
+                                <!-- ////////////////////First Profile///////////////// -->
+                                <img src="/assets/img/Aboozar-Mojdeh.jpg" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/aboozarmojdeh" target="_blank">Aboozar Mojdeh</a>
+                            </div>
+                            <hr>
+                            <!-- ////////////////////Second Profile///////////////// -->
+                            <div class="col-md-6 ml-auto">
+                                <img src="/assets/img/Sujata-Jhavery.png" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/Sujata1" target="_blank">Sujata Jhavery</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 ml-auto">
+                                <!-- ////////////////////Third Profile///////////////// -->
+                                <img src="/assets/img/Neha-Pathak.jpg" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/pathak-neha" target="_blank">Neha Pathak</a>
+                            </div>
+                            <div class="col-md-6 ml-auto">
+                                <!-- ////////////////////Fourth Profile///////////////// -->
+                                <img src="/assets/img/Karen-Kua.jpg" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/azukimochi" target="_blank">Karen Kua</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ///////////////////////////////FOOTER///////////////////////////////////////////////// -->
+    <footer class='page-footer font-small blue pt-4' style='text-align: center'>
+
+        <div class='container-fluid text-center'>
+            <ul class='list-inline'>
+                <li class='list-inline-item'><a href='index'>Home</a></li>
+                <li class='list-inline-item'><a href='lost'>Report an Item You Lost</a></li>
+                <li class='list-inline-item'><a href='found'>Report an Item You Found</a></li>
+            </ul>
+        </div>
+
+        <div class='footer-copyright text-center py-3'>© 2018 Copyright:
+            <a a href="https://github.com/aboozarmojdeh" target="_blank" data-toggle="modal" data-target=".bd-example-modal-lg"> Lost and Found</a>
+        </div>
+    </footer>
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->

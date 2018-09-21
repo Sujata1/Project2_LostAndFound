@@ -1,0 +1,258 @@
+<!-- ////////////////////////HEADER////////////////////////////////// -->
+
+
+      <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class='navbar-nav mr-auto nav nav-tabs collapse navbar-collapse card-header-tabs'>
+                    <li class='nav-item'>
+          <a class='nav-link ' href='index'>Home</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link ' href='SignIn'>Sign In</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='SignUp'>Sign Up</a>
+        </li>
+        <li class='nav-item'>
+           <a  class='nav-link lostItem' href='lost'>Report Lost Item</a>
+        </li>
+        <li class='nav-item'>
+            <a class='nav-link foundItem' href='found'>Report Found Item</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' href='browse-items'>Browse Lost and Found Items</a>
+        </li>
+      </ul>
+      <br>
+      <form class="form-inline">
+          <input id="searchBarInput" class="form-control mr-sm-2" type="search" placeholder="Search by ID" aria-label="Search">
+          <button id="searchBarBtn" class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+</nav>
+
+  <div class='card text-center text-white' id="foundBG">
+    {{!-- <div class='card-header'>
+
+    </div> --}}
+    <!-- /////////////////////////////////////////////////////////////// -->
+    <div class='container'>
+      {{!-- <hr> --}}
+      <br>
+      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <div class='container text-center'>
+        <h2>ADD AN ITEM YOU FOUND</h2>
+        <hr>
+      </div>
+      
+        <!-- ////////////////////////////First and last name and Email Address///////////////////////////////////////// -->
+       <form id="userNames">
+         <div class='notSignedMessage'></div>
+        <div class='input-group'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text' id=''>First Name</span>
+          </div>
+          <input id='firstName' type='text' id='firstName' class='form-control'>
+          <br><br>
+          <div class='input-group-prepend'>
+            <span class='input-group-text' id=''>Last Name</span>
+          </div>
+          <input type='text' id='lastName' class='form-control'>
+          <br><br>
+        </div>
+        <br>
+        <div class='input-group'>
+          <span for='exampleFormControlInput1' class='input-group-text' id=''>Email address</span>
+          <input type='email' class='form-control' id='exampleFormControlInput1' placeholder='name@example.com'>
+
+          <span for='exampleFormControlInput2' class='input-group-text' id=''>Phone Number</span>
+          <input type='tel' class='form-control' id='exampleFormControlInput2' placeholder='647-000-0000'>
+        </div>
+        <div class='container'>
+          <button id="enterFoundItems" type='button' class='btn btn-primary btn-lg btn-block'>Enter to Add Found Item</button>
+        </div>
+        </form>
+<br>
+        <!-- ///////////////////////////////Item Category///////////////////////////////////////////// -->
+       <form id="foundItemsEntry">
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <label class='input-group-text' for='inputGroupSelect01'>Item Category</label>
+          </div>
+          <select class='custom-select' id='category' size='1' onchange='makeSubmenu(this.value)'>
+            <option value='' disabled selected>Choose Category</option>
+            <option>Electronics</option>
+            <option>Wallet</option>
+            <option>Clothing</option>
+            <option>Accessories</option>
+            <option>Documents</option>
+            <option>Other</option>
+          </select>
+
+          <select class='custom-select' id='categorySelect' size='1'>
+            <option value='' disabled selected>Choose Subcategory</option>
+            <option></option>
+          </select>
+        </div>
+        <!-- ///////////////////////////////Size///////////////////////////////////////////// -->
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <label class='input-group-text'>Size</label>
+          </div>
+          <select class='custom-select' id='size'>
+            <option selected>Choose...</option>
+            <option value='Small (30cm and under)'>Small (30cm and under)</option>
+            <option value='Medium (Larger than 30cm)'>Medium (Larger than 30cm)</option>
+            <option value='Large (Larger than 60cm)'>Large (Larger than 60cm)</option>
+            </select>
+        </div>
+        <!-- ///////////////////////////////Color///////////////////////////////////////////// -->
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <label class='input-group-text'>Color</label>
+          </div>
+          <select class='custom-select' id='color'>
+            <option selected>Choose...</option>
+            <option value='Red'>Red</option>
+            <option value='Blue'>Blue</option>
+            <option value='Green'>Green</option>
+            <option value='Yellow'>Yellow</option>
+            <option value='Orange'>Orange</option>
+            <option value='Purple'>Purple</option>
+            <option value='White'>White</option>
+            <option value='Black'>Black</option>
+            <option value='Grey'>Grey</option>
+            <option value='Pink'>Pink</option>
+            <option value='Brown'>Brown</option>
+            <option value='Mix of colors'>Mix of many colors</option>
+          </select>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+        <div class='form-group'>
+          <label>Found Location</label>
+          <textarea class='form-control' id='location' rows='1' placeholder='Start Typing the Address Here'></textarea>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+        <div class='form-group'>
+          <label>Item Description</label>
+          <textarea class='form-control' id='description' rows='1' placeholder='Wallet including IDs, Debit and Credit Cards'></textarea>
+           <div id='item-desc-error'></div>   
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
+    </div>
+    <div class='container'>
+      <button id="submitItems" type='submit' class='btn btn-primary btn-lg btn-block'>SUBMIT</button>
+    </div>
+    </form>
+    <br>
+  </div>
+
+ {{!-- ///////////////////////////////////////Modal////////////////////////////////////////// --}}
+  
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Developer Team Members - Coding Bootcamp-Project 2-University of Toronto</h5>
+                </h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 ml-auto">
+                                <!-- ////////////////////First Profile///////////////// -->
+                                <img src="/assets/img/Aboozar-Mojdeh.jpg" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/aboozarmojdeh" target="_blank">Aboozar Mojdeh</a>
+                            </div>
+                            <hr>
+                            <!-- ////////////////////Second Profile///////////////// -->
+                            <div class="col-md-6 ml-auto">
+                                <img src="/assets/img/Sujata-Jhavery.png" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/Sujata1" target="_blank">Sujata Jhavery</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 ml-auto">
+                                <!-- ////////////////////Third Profile///////////////// -->
+                                <img src="/assets/img/Neha-Pathak.jpg" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/pathak-neha" target="_blank">Neha Pathak</a>
+                            </div>
+                            <div class="col-md-6 ml-auto">
+                                <!-- ////////////////////Fourth Profile///////////////// -->
+                                <img src="/assets/img/Karen-Kua.jpg" alt="..." class="img-thumbnail">
+                                <a href="https://github.com/azukimochi" target="_blank">Karen Kua</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{{!-- /////////////////////////////////////////////////////////////////////////////////////// --}}
+    <!-- ///////////////////////////////FOOTER///////////////////////////////////////////////// -->
+    <footer class='page-footer font-small blue pt-4' style='text-align: center'>
+
+        <div class='container-fluid text-center'>
+            <ul class='list-inline'>
+                <li class='list-inline-item'><a href='index'>Home</a></li>
+                <li class='list-inline-item'><a href='lost'>Report an Item You Lost</a></li>
+                <li class='list-inline-item'><a href='found'>Report an Item You Found</a></li>
+            </ul>
+        </div>
+
+        <div class='footer-copyright text-center py-3'>© 2018 Copyright:
+            <a a href="https://github.com/aboozarmojdeh" target="_blank" data-toggle="modal" data-target=".bd-example-modal-lg"> Lost and Found</a>
+        </div>
+    </footer>
+ 
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+  <script>
+   $("#userNames").show();
+    $("#itemsEntry").hide();
+    $("#submitItems").hide();
+$("#enterFoundItems").click(function(event){
+    event.preventDefault();
+   
+    $("#itemsEntry").show();
+    $("#submitItems").show();
+    
+});
+var subcategory = {
+    Electronics: ['Mobile(apple)','Mobile(android)','laptop','tablet','earbuds/ headphones','computer accessories'],
+    Wallet: ['Wallet only','Wallet with IDs','IDs only'],
+    Clothing:['Shirt','Jacket','Pants','Skirt'],
+    Accessories:['Shoes','Hat','Scarf','Mittens/ Gloves','Jewellery/ Watches','Bag/ Purse/ Case'],
+    Documents:['Book','Notes'],
+    Other:["Must be clarified in item description section"]
+    };
+    function makeSubmenu(value) {
+    if(value.length==0) document.getElementById('categorySelect').innerHTML = '<option></option>';
+    else {
+    var categoryOptions = '';
+    for(categoryId in subcategory[value]) {
+        categoryOptions+='<option>'+subcategory[value][categoryId]+'</option>';
+    }
+    document.getElementById('categorySelect').innerHTML = categoryOptions;
+    }
+    }
+   
+    function resetSelection() {
+    document.getElementById('category').selectedIndex = 0;
+    document.getElementById('categorySelect').selectedIndex = 0;
+    }
+  </script>
+
