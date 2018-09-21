@@ -8,15 +8,12 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/api/emailValidate', (req, res) => {
-    console.log("req.body.email: " + req);
-    db.User.findOne({
+     db.User.findOne({
         where: {
             email: req.body.email
         }
     }).then(function (dbUser) {
-        //console.log(err);
-
-        if (dbUser !== null) {
+    if (dbUser !== null) {
 
             res.json({
                 validate: true
@@ -30,8 +27,7 @@ router.post('/api/emailValidate', (req, res) => {
 });
 
 router.post('/api/login', (req, res) => {
-    console.log("req.body.email: " + req.body.email);
-    db.User.findOne({
+      db.User.findOne({
         where: {
             email: req.body.email,
 
@@ -86,14 +82,14 @@ router.post('/api/userpost', (req, res) => {
                 sendSMS(dbUser.email,dbUser.firstname,dbUser.lastname,dbUser.password);
             }
             catch(err){
-                console.log("error sending sms to new user: "+err);
+                console.log("Error sending sms to new user: "+err);
             }
 
             try{
                 sendEmailToNewUser(dbUser.email, dbUser.firstname,dbUser.lastname, dbUser.password);
             }
             catch(err){
-                console.log("error sending email to new user: "+err);
+                console.log("Error sending email to new user: "+err);
             }
             
             var user = dbUser.username;

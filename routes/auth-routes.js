@@ -15,8 +15,7 @@ var router = express.Router();
 
 
 router.get('/auth', verifytoken, function (req, res) {
-  console.log(req.headers);
-  jwt.verify(req.token, 'secretkey', (err, authData) => {
+   jwt.verify(req.token, 'secretkey', (err, authData) => {
     if (err) {
       res.json({
         status: '404',
@@ -33,8 +32,7 @@ router.get('/auth', verifytoken, function (req, res) {
 // Verify Token
 function verifytoken(req, res, next) {
   //Get auth header value
-  console.log(req.headers);
-  const bearerHeader = req.headers['authorization'];
+   const bearerHeader = req.headers['authorization'];
   //Check if bearer is undefined
   if (typeof bearerHeader !== 'undefined') {
     // Split at the space

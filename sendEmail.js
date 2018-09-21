@@ -1,4 +1,4 @@
-var transport = require("./emailTransport.js");
+var transport = require('./emailTransport.js');
 
 function SendEmail(toEmail,subject,emailBody){
   var mailOptions = {
@@ -10,7 +10,7 @@ function SendEmail(toEmail,subject,emailBody){
   
   this.sendMail = transport.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log(error);
+      console.log('Error sending email: '+error);
     } else {
       console.log('Email sent: ' + info.response);
     }

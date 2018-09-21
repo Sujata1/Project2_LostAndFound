@@ -4,13 +4,13 @@
 
 // Dependencies
 // =============================================================
-var path = require('path');
+//var path = require('path');
 var express = require('express');
 var router = express.Router();
-var sendmail = require("../sendEmail.js");
+var sendmail = require('../sendEmail.js');
 
 // Import the model to use its database functions.
-var db = require('../models')
+var db = require('../models');
 var globalData;
 var idData = [];
 var idQuery;
@@ -35,24 +35,20 @@ router.get('/browse-by-id', function (req, res) {
         claimed: 0
       }
     }).then(function (result) {
-      console.log("Found Data: " + JSON.stringify(result));
       idData.push(result);
-      console.log("global Data: " + JSON.stringify(idData));
       res.json(result);
-    })
-    console.log('Querying the ID')
-  })
+    });
+  });
 });
 
 router.get('/browse-by-id-result', function (req, res) {
-  console.log("data : " + req.data);
   res.render('browse-results', { lostItems: idData[0], foundItems: idData[1] });
 });
 
 router.get('/lost', function (req, res) {
   db.Lost.findAll({ include: db.User }).then(function (data) {
-    res.render('lost', data)
-  })
+    res.render('lost', data);
+  });
 });
 
 router.get('/browse-lost-items-result', function (req, res) {
@@ -84,14 +80,14 @@ router.get('/browse-found-items', function (req, res) {
 
 router.post('/api/lost', function (req, res) {
   db.Lost.create(req.body).then(function (results) {
-     try {
+    try {
       sendLostEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname, results.id);
       var user = dbUser.username;
     } catch (err) {
-
+      console.log('Error pssting Lost Item for user: '+user+' '+err);
     }
     res.json(results);
-  })
+  });
 });
 
 // router.put('/api/lost/:id', function (req, res) {
@@ -110,27 +106,27 @@ router.post('/api/lost', function (req, res) {
 // ---------- ROUTES FOR 'FOUND' TABLE 
 router.get('/found', function (req, res) {
   db.Found.findAll({ include: db.User }).then(function (data) {
-    res.render('found', data)
-  })
+    res.render('found', data);
+  });
 });
 
 router.get('/browse-found', function (req, res) {
   db.Lost.findAll({ include: db.User }).then(function (data) {
-    res.render('browse', data)
-  })
+    res.render('browse', data);
+  });
 });
 
 router.post('/api/found', function (req, res) {
   db.Found.create(req.body).then(function (results) {
     foundId = results.id;
- try {
-      sendFoundEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname,  foundId);
+    try {
+      sendFoundEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname, foundId);
       var user = dbUser.username;
     } catch (err) {
-      console.log("error sending Found Confirmation to user: " + err);
+      console.log('Error sending Found Confirmation to user: '+user+' ' + err);
     }
-    res.json(results)
-  })
+    res.json(results);
+  });
 });
 
 // router.put('/api/found/:id', function (req, res) {
@@ -149,52 +145,50 @@ router.post('/api/found', function (req, res) {
 // TO INPUT A CLAIM FOR FOUND ITEM 
 router.post('/api/claim/found', function (req, res) {
   var claimQuery = req.body;
-  console.log("claimQuery: " + JSON.stringify(claimQuery));
   db.Claim.create(req.body)
-  .then(function (results) {
-    try {
-      sendClaimEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname, results.id);
-      var user = dbUser.username;
-    } catch (err) {
-      console.log("error sending Lost Confirmation to user: " + err);
-    }
-    // res.json(results)
-    db.Found.update({
-      claimed: true
-    }, {
+    .then(function (results) {
+      try {
+        sendClaimEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname, results.id);
+        var user = dbUser.username;
+      } catch (err) {
+        console.log('Error sending Lost Confirmation to user: '+user+' ' + err);
+      }
+      // res.json(results)
+      db.Found.update({
+        claimed: true
+      }, {
         where: {
           id: claimQuery.FoundId
         }
       }).then(function (data) {
-        res.json(data)
+        res.json(data);
         res.end();
-      })
-  });
+      });
+    });
 });
 
 // TO INPUT A CLAIM FOR LOST ITEM 
 router.post('/api/claim/lost', function (req, res) {
   var claimQuery = req.body;
-  console.log("claimQuery: " + JSON.stringify(claimQuery));
   db.Claim.create(req.body)
-  .then(function (results) {
-    try {
-      sendClaimEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname, results.id);
-      var user = dbUser.username;
-    } catch (err) {
-      console.log("error sending Lost Confirmation to user: " + err);
-    }
-    db.Lost.update({
-      claimed: true
-    }, {
+    .then(function (results) {
+      try {
+        sendClaimEnteredEmailToUser(req.body.email, req.body.firstname, req.body.lastname, results.id);
+        var user = dbUser.username;
+      } catch (err) {
+        console.log('Error sending Lost Confirmation to user: '+user+ ' ' + err);
+      }
+      db.Lost.update({
+        claimed: true
+      }, {
         where: {
           id: claimQuery.LostId
         }
       }).then(function (data) {
-        res.json(data)
+        res.json(data);
         res.end();
-      })
-  });
+      });
+    });
 });
 
 
@@ -206,10 +200,10 @@ function sendLostEnteredEmailToUser(email, firstName, lastname, itemID) {
     + 'You will be informed by Email if we found any items match with your property.\n'
     + '\n'
     + 'Regards,\n'
-    + 'Lost and Found Development Team'
-  var emailSubject = firstName + ' ' + lastname + ' Confirmation - Lost Item information received'
-  var sendUserEmail = new sendmail(email, emailSubject, emailBody);
-};
+    + 'Lost and Found Development Team';
+  var emailSubject = firstName + ' ' + lastname + ' Confirmation - Lost Item information received';
+  sendUserEmail = new sendmail(email, emailSubject, emailBody);
+}
 
 function sendFoundEnteredEmailToUser(email, firstName, lastname, itemID) {
   var emailBody = 'Dear ' + firstName + ' ' + lastname + ',\n' + 'Welcome to Lost and Found App\n'
@@ -219,11 +213,11 @@ function sendFoundEnteredEmailToUser(email, firstName, lastname, itemID) {
     + 'We will try to find someone who lost this item'
     + '\n'
     + 'Regards,\n'
-    + 'Lost and Found Development Team'
+    + 'Lost and Found Development Team';
 
-  var emailSubject = firstName + ' ' + lastname + ' Confirmation - Found Item information received'
-  var sendUserEmail = new sendmail(email, emailSubject, emailBody);
-};
+  var emailSubject = firstName + ' ' + lastname + ' Confirmation - Found Item information received';
+  sendmail(email, emailSubject, emailBody);
+}
 
 function sendClaimEnteredEmailToUser(email, firstName, lastname, claimID) {
   var emailBody = 'Dear ' + firstName + ' ' + lastname + ',\n' + 'Welcome to Lost and Found App\n'
@@ -233,10 +227,10 @@ function sendClaimEnteredEmailToUser(email, firstName, lastname, claimID) {
     + ' You can connect via this email to related user\n'
     + '\n'
     + 'Regards,\n'
-    + 'Lost and Found Development Team'
-  var emailSubject = firstName + ' ' + lastname + ' Confirmation - Claim Item information received'
-  var sendUserEmail = new sendmail(email, emailSubject, emailBody);
-};
+    + 'Lost and Found Development Team';
+  var emailSubject = firstName + ' ' + lastname + ' Confirmation - Claim Item information received';
+  sendmail(email, emailSubject, emailBody);
+}
 
 // Export routes for server.js to use.
 module.exports = router;
